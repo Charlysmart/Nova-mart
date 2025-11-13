@@ -1,7 +1,11 @@
 import backGroundImage from "../assets/images/HERO BG IMAGE.jpg";
+import Package from "../assets/images/package.png";
+import settings from "../assets/images/settings-01.png";
+import energy from "../assets/images/sustainable-energy.png";
 import { ArrowUpRight } from "lucide-react";
 import Navbar from "../components/navbar";
-import ProductCard from "../components/productCard";
+import LatestProductComponent from "../components/latestProduct";
+import ProductSection from "../components/productSection";
 const HomePage = () => {
     return (
         <div>
@@ -51,14 +55,34 @@ const HomePage = () => {
                     <b className="font-bold text-[48px] font-gentium">Latest Products</b>
                     <p className="font-inter text-[20px]">Check Out Our Modern furnitures for your Home and Office</p>
                 </div>
-                <ProductCard />
+                <LatestProductComponent />
             </section>
             <section className="mt-15 flex flex-col items-center justify-center">
-                <div className="border w-[1269px] relative h-[425px] flex flex-col items-center justify-center">
-                    <div className="border w-[1200px] flex flex-col items-center h-[415px]">
-                        <h1 className="w-[856px] font-gentium font-bold text-[48px] leading-15 text-center">Custom-Cratfted Minimalism designed for Modern Living</h1>
+                <div className="w-[1269px] relative h-[425px] flex flex-col items-center justify-center">
+                    <div className="w-[1200px] flex flex-col items-center h-[415px]">
+                        <h1 className="w-[856px] font-gentium text-[48px] leading-15 text-center">Custom-Cratfted Minimalism designed for Modern Living</h1>
+                        <div className="flex w-full mt-[50px] gap-3 justify-between">
+                            <div className="w-[348px] h-[182px] flex flex-col items-center-safe">
+                                <img src={energy} className="w-[60px] h-[60px] mb-1" alt="sustainable energy" />
+                                <p className="inter font-bold text-[20px] mb-2">Sustainable Materials</p>
+                                <p className="font-inter text-[20px] text-center">Sourced from ethical suppliers, these materials are kind to the environment and you</p>
+                            </div>
+                            <div className="w-[348px] h-[182px] flex flex-col items-center-safe">
+                                <img src={Package} className="w-[60px] h-[60px] mb-1" alt="package" />
+                                <p className="inter font-bold text-[20px] mb-2">Space Saving Design</p>
+                                <p className="font-inter text-[20px] text-center">Our pieces adapt to your life, seamlessly blending form, function and flair</p>
+                            </div>
+                            <div className="w-[348px] h-[182px] flex flex-col items-center-safe">
+                                <img src={settings} className="w-[60px] h-[60px] mb-1" alt="settings" />
+                                <p className="inter font-bold text-[20px] mb-2">Customizable options</p>
+                                <p className="font-inter text-[20px] text-center">Dream it, design it, own it, our furniture isnt just bought, it is built for you.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </section>
+            <section>
+                <ProductSection />
             </section>
         </div>
     );

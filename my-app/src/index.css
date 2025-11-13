@@ -7,13 +7,13 @@
 }
 @font-face {
     font-family: 'times-new-roman';
-    src: url('./assets/font//times\ new\ roman/times') format('truetype');
+    src: url('./assets/font//times\ new\ roman/times.ttf') format('truetype');
     font-weight: 100 900;
     font-style: normal;
 }
 @font-face {
     font-family: 'gentium-basic';
-    src: url('./assets/font/Gentium\ basic/GenBasB') format('truetype');
+    src: url('./assets/font/Gentium\ basic/GenBasB.ttf') format('truetype');
     font-weight: 100 900;
     font-style: normal;
 }

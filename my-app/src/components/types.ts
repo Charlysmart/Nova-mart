@@ -5,6 +5,12 @@ export type ProductsType = {
     image: string
 }
 
+export type FilterButtonType = {
+    label: string,
+    onClick : () => void
+    className?: string ,
+}
+
 export type ControlButtonsProps = {
     label: React.ReactElement,
     className?: string ,

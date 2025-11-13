@@ -22,7 +22,7 @@ const ControlButtons = ({ label, className, onClick, disabled } : ControlButtons
 const reducer = ( state : State, action : Action ): State => {
     switch (action.type) {
         case "nextSlide":
-            return { startIndex: state.startIndex + 3, endIndex: state.endIndex + 3, currentPage: state.currentPage < 4 ? state.currentPage + 1 : 1 }
+            return { startIndex: state.startIndex + 3, endIndex: state.endIndex + 3, currentPage: state.currentPage < 4 ? state.currentPage + 1 : 4 }
         case "previousSlide":
             return { startIndex: Math.max(0, state.startIndex - 3), endIndex: Math.max(3, state.endIndex - 3), currentPage: state.currentPage > 1 ? state.currentPage - 1 : 1}    
         default:
@@ -30,7 +30,7 @@ const reducer = ( state : State, action : Action ): State => {
     }
 }
 
-const ProductCard = () => {
+const LatestProductCompnent = () => {
     const [state, dispatch] = useReducer(reducer, init ); //for handling the states of the slide indexes
     const { startIndex, endIndex, currentPage } = state; // destructured states
     const [slice, setSlice] = useState<any[]>([]); //sliced products state for mapping
@@ -42,8 +42,8 @@ const ProductCard = () => {
     return (
         <div className="w-[1269px] relative h-[425px] flex flex-col items-center justify-center">
             <div className="h-[353px] mb-3 overflow-hidden">
-                <ControlButtons className="left-2 top-1/3" label={<ChevronLeft size={50} />} onClick={() => dispatch({type: "previousSlide"})} disabled = {startIndex > 0 ? false : true} />
-                <div className="w-[1200px] h-full flex gap-5 flex-nowrap overflow-hidden transition-transform duration-700 ease-in-out">
+                <ControlButtons className="left-2 top-1/3" label={<ChevronLeft size={50} />} onClick={() => dispatch({type: "previousSlide"})} disabled = {currentPage > 1 ? false : true} />
+                <div className="w-[1200px] h-full flex gap-5 flex-nowrap overflow-hidden transition-all duration-700 ease-in-out">
                     {slice.map(item => (
                         <div key={item.id} className="w-[387px] h-[353px] px-[43px] rounded-[20px] bg-gray-200 flex flex-col items-center flex-none hover:shadow-custom">
                             <img className="w-[200px] flex items-start h-[245px]" src={`/productImages/${item.image}`} alt={item.image} />
@@ -54,7 +54,7 @@ const ProductCard = () => {
                         </div>
                     ))}
                 </div>
-                <ControlButtons className="right-2 top-1/3" label={<ChevronRight size={50} />} onClick={() => dispatch({type: "nextSlide"})} disabled = {endIndex <= 12 ? false : true} />
+                <ControlButtons className="right-2 top-1/3" label={<ChevronRight size={50} />} onClick={() => dispatch({type: "nextSlide"})} disabled = {currentPage < 4 ? false : true} />
             </div>
             <div className="flex gap-4">
                 {Array.from ({length : totalPages}).map((_, i) => ( //creates fake arrays for looping through the buttons depending on the total pages
@@ -65,4 +65,4 @@ const ProductCard = () => {
     )
 }
 
-export default ProductCard;
+export default LatestProductCompnent;
