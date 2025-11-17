@@ -40,21 +40,21 @@ const LatestProductCompnent = () => {
     }, [startIndex, endIndex]);  
     
     return (
-        <div className="w-[1269px] relative h-[425px] flex flex-col items-center justify-center">
-            <div className="h-[353px] mb-3 overflow-hidden">
-                <ControlButtons className="left-2 top-1/3" label={<ChevronLeft size={50} />} onClick={() => dispatch({type: "previousSlide"})} disabled = {currentPage > 1 ? false : true} />
-                <div className="w-[1200px] h-full flex gap-5 flex-nowrap overflow-hidden transition-all duration-700 ease-in-out">
+        <div className="w-full relative lg:h-[425px] md:h-[500px] h-[430px] flex flex-col items-center justify-center">
+            <div className="lg:h-[353px] md:h-[400px] w-[95%] mb-3 overflow-hidden">
+                <ControlButtons className="lg:left-2 left-0 top-1/3" label={<ChevronLeft size={50} />} onClick={() => dispatch({type: "previousSlide"})} disabled = {currentPage > 1 ? false : true} />
+                <div className="w-full justify-between h-full flex gap-5 flex-nowrap overflow-hidden transition-all duration-700 ease-in-out">
                     {slice.map(item => (
-                        <div key={item.id} className="w-[387px] h-[353px] px-[43px] rounded-[20px] bg-gray-200 flex flex-col items-center flex-none hover:shadow-custom">
-                            <img className="w-[200px] flex items-start h-[245px]" src={`/productImages/${item.image}`} alt={item.image} />
-                            <div className="w-[247px] h-[90px] flex flex-col items-center justify-between">
+                        <div key={item.id} className="lg:w-[32%] md:w-[49%] w-full h-full px-[43px] rounded-[20px] bg-gray-200 flex flex-col items-center flex-none hover:shadow-custom">
+                            <img className="lg:w-[75%] w-[95%] flex items-start h-[245px]" src={`/productImages/${item.image}`} alt={item.image} />
+                            <div className="lg:w-[80%] w-[90%] h-[90px] flex flex-col items-center justify-between">
                                 <p className="font-medium font-inter text-[20px] text-center">{item.name}</p>
                                 <p className="font-bold font-inter text-[22px]">${item.price}</p>
                             </div>
                         </div>
                     ))}
                 </div>
-                <ControlButtons className="right-2 top-1/3" label={<ChevronRight size={50} />} onClick={() => dispatch({type: "nextSlide"})} disabled = {currentPage < 4 ? false : true} />
+                <ControlButtons className="lg:right-2 right-0 top-1/3" label={<ChevronRight size={50} />} onClick={() => dispatch({type: "nextSlide"})} disabled = {currentPage < 4 ? false : true} />
             </div>
             <div className="flex gap-4">
                 {Array.from ({length : totalPages}).map((_, i) => ( //creates fake arrays for looping through the buttons depending on the total pages
