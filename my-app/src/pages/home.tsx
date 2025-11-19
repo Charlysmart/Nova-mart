@@ -6,6 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import Navbar from "../components/navbar";
 import LatestProductComponent from "../components/latestProduct";
 import ProductSection from "../components/productSection";
+import SellingFurniture from "../components/bestSelling";
 const HomePage = () => {
     return (
         <div>
@@ -85,6 +86,9 @@ const HomePage = () => {
             </section>
             <section>
                 <ProductSection />
+            </section>
+            <section>
+                <SellingFurniture />
             </section>
         </div>
     );
