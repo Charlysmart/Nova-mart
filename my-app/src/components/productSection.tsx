@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from "react";
-import type { FilterButtonType } from "./types";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import type { FilterButtonType, ProductsType } from "./types";
 import { shuffleProducts } from "./scripts";
 import ProductBg from "../assets/images/Subtract.png"
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,15 +13,18 @@ const FilterButton = React.memo(({label, onClick, className} : FilterButtonType)
 
 const ProductSection = () => {
     const [filter, setFilter] = useState<string>("all");
-    
+    const [products, setProducts] = useState<ProductsType[]>([]);
+
     const shuffledProducts = shuffleProducts();
+    useEffect(() => {        
+        const filteredProducts = shuffledProducts.filter(item => item.category === filter);        
+        const ourProducts = filter !== "all" ? filteredProducts.slice(0, 6) : shuffledProducts.slice(0, 6);
+        console.log(ourProducts);
+        setProducts(ourProducts);
+    }, [filter]);
     
-    const filteredProducts = shuffledProducts.filter(item => item.category === filter);
     
-    const ourProducts = filter !== "all" ? filteredProducts.slice(0, 6) : shuffledProducts.slice(0, 6);
-    console.log(ourProducts);
-    
-    const categories = [...new Set(shuffledProducts.map(i => i.category))].sort((a,b) => a.localeCompare(b));
+    const categories = useMemo(() => [...new Set(shuffledProducts.map(i => i.category))].sort((a,b) => a.localeCompare(b)), []);
     
     const handleFilterClick = useCallback((category: string) => {
         setFilter(category);
@@ -38,7 +41,7 @@ const ProductSection = () => {
                 </div>
                 <div className="flex w-full flex-wrap md:justify-between justify-center gap-y-5 px-[2%]">
                     <AnimatePresence mode="sync">
-                        {ourProducts.map(item => (
+                        {products.map(item => (
                             <motion.div key={item.id} className="lg:w-[32%] md:w-[48%] w-[92%] h-[400px] relative rounded-[20px]" layout  // 💡 This line makes layout transitions smooth
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}

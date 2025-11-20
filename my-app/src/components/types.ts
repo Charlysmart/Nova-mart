@@ -2,7 +2,8 @@ export type ProductsType = {
     id: number, 
     name: string, 
     price: number, 
-    image: string
+    image: string,
+    rating: number
 }
 
 export type FilterButtonType = {
